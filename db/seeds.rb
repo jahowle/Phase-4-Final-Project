@@ -14,6 +14,8 @@ Location.destroy_all
 Partner.destroy_all
 Category.destroy_all
 Need.destroy_all
+Donor.destroy_all
+Donation.destroy_all
 
 10.times do
     Location.create(
@@ -82,7 +84,6 @@ Partner.create(
     Neighbor.create(
         name: Faker::Name.name,
         bio: Faker::Lorem.paragraph,
-        location_id: Location.pluck(:id).sample,
         partner_id: Partner.pluck(:id).sample
         )
 
@@ -97,6 +98,21 @@ end
         funded: false
     )
 
+end
+
+30.times do
+    Donor.create(
+        name: Faker::Name.name
+    )
+
+end
+
+30.times do
+    Donation.create(
+        amount: rand(1..400),
+        need_id: Need.pluck(:id).sample,
+        donor_id: Donor.pluck(:id).sample
+    )
 end
 
 puts "✅ Done seeding!"
