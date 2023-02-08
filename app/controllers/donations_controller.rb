@@ -1,0 +1,28 @@
+class DonationsController < ApplicationController
+    def index
+        donations = Donation.all
+        render json: donations
+    end
+
+    def show
+        donation = Donation.find_by(id: params[:id])
+            if donation
+                render json: donation
+            else
+                render json: { error: "Donation not found" }, status: :not_found
+            end
+    end
+
+    def create
+        donation = Donation.create!(category_params)
+        render json: donation, status: :created
+        rescue ActiveRecord::RecordInvalid => e
+        render json: { errors: e.record.errors.full_messages }, status: :unprocessable_entity
+    end
+
+    private
+
+    def donation_params
+        params.permit(:amount, :donor_id, :need_id)
+    end
+end
