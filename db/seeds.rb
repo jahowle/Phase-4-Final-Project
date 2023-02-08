@@ -95,10 +95,16 @@ end
         amount: rand(1..400),
         neighbor_id: Neighbor.pluck(:id).sample,
         category_id: Category.pluck(:id).sample,
-        funded: false
+        funded: false,
+        remaining_balance: nil
+        
     )
 
 end
+
+
+
+
 
 30.times do
     Donor.create(
@@ -112,6 +118,7 @@ end
         amount: rand(1..400),
         need_id: Need.pluck(:id).sample,
         donor_id: Donor.pluck(:id).sample
+
     )
 end
 
