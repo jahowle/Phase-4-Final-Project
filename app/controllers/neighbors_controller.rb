@@ -12,4 +12,17 @@ class NeighborsController < ApplicationController
                 render json: { error: "Neighbor not found" }, status: :not_found
             end
     end
+
+    def create
+        neighbor = Neighbor.create!(neighbor_params)
+        render json: neighbor, status: :created
+        rescue ActiveRecord::RecordInvalid => e
+        render json: { errors: e.record.errors.full_messages }, status: :unprocessable_entity
+    end
+
+    private
+
+    def neighbor_params
+        params.permit(:name, :bio, :partner_id)
+    end
 end
