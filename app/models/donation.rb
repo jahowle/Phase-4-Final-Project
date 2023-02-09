@@ -6,7 +6,8 @@ class Donation < ApplicationRecord
     # How do I validate that the amount is less than or equal to the remaining balance?
 
     def update_need_balance
-        balance = self.need.amount - self.amount
-        return balance
+        balance = self.need.remaining_balance - self.amount
+        self.need.update(remaining_balance: balance)
+        # puts [self.need.remaining_balance]
     end
 end
