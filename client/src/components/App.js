@@ -4,28 +4,18 @@ import Login from './Login';
 
 function App() {
 
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    fetch("/me").then((response) => {
-      if (response.ok) {
-        response.json().then((user) => setUser(user));
-      }
-    });
-  }, []);
+  const [user, setUser] = useState("No user yet");
 
   function handleLogin(user) {
-    setUser(user);
+    setUser(user.username)
   }
 
-  // function handleLogout() {
-  //   setUser(null);
-  // }
 
 
   return (
     <div className="App">
-      <Login onLogin={handleLogin} user={user}/>
+      <h1>{user}</h1>
+      <Login onLogin={handleLogin} />
     </div>
   );
 } 

@@ -1,11 +1,11 @@
 import React, {useState} from "react";
 
-function Login({ onLogin, user }) {
+function Login({ onLogin }) {
     const [username, setUsername] = useState("");
   
     function handleSubmit(e) {
       e.preventDefault();
-      fetch("/login", {
+      fetch("/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -18,14 +18,13 @@ function Login({ onLogin, user }) {
   
     return (
         <div>
-            <h1>{user}</h1>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
-        <button type="submit">Login</button>
+        <button type="submit">SignUp</button>
       </form>
       </div>
     );

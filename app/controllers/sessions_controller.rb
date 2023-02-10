@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
         session[:session_hello] = "Taco"
         cookies[:cookies_hello] = "Taco 2"
         render json: { session: session, cookies: cookies.to_hash }
-      end
+    end
 
       def create
         user = User.find_by(username: params[:username])
