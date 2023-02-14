@@ -18,8 +18,14 @@ function Signup({onSignup}) {
               password_confirmation: passwordConfirmation
            }),
         })
-          .then((r) => r.json())
-          .then((user) => onSignup(user));
+          .then((r) => {
+            if(r.ok) {
+                r.json().then((user) => onSignup(user))
+            }
+            else {
+                console.log("Signup: Response Not OK")
+            }
+          })
       }
     
       return (
@@ -48,6 +54,8 @@ function Signup({onSignup}) {
         />
           <button type="submit">Partner SignUp</button>
         </form>
+        <h4>Already have an account?</h4>
+        <button>Login</button>
         </div>
       );
 }
