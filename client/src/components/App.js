@@ -2,6 +2,7 @@ import '../App.css';
 import { useState, useEffect } from "react";
 import Login from './Login';
 import Logout from './Logout';
+import Signup from './Signup';
 
 function App() {
 
@@ -21,6 +22,11 @@ function App() {
     setIsLoggedIn(true)
   }
 
+  function handleSignup(user) {
+    setUser(user.username)
+    setIsLoggedIn(true)
+  }
+
   function onLogout() {
     setUser("")
     setIsLoggedIn(!isLoggedIn)
@@ -31,7 +37,7 @@ function App() {
   return (
     <div className="App">
       <h1>Welcome, {user}</h1>
-      {isLoggedIn ? <Logout onLogout={onLogout}/> : <Login onLogin={handleLogin}/>}
+      {isLoggedIn ? <Logout onLogout={onLogout}/> : <Signup onSignup={handleSignup}/>}
     </div>
   );
 } 

@@ -16,6 +16,7 @@ Category.destroy_all
 Need.destroy_all
 Donor.destroy_all
 Donation.destroy_all
+User.destroy_all
 
 10.times do
     Location.create(
