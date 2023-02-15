@@ -4,7 +4,7 @@ class NeedsController < ApplicationController
 
     def index
         needs = Need.all
-        render json: needs
+        render json: needs, include: [:neighbor, :category]
     end
     
     def show
