@@ -3,24 +3,34 @@ import { useState, useEffect } from "react";
 import Login from './Login';
 import Logout from './Logout';
 import Signup from './Signup';
+import NeedsList from './NeedsList';
 import { Route, Switch } from "react-router-dom";
 
 function App() {
 
   const [user, setUser] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [needs, setNeeds] = useState([])
 
   useEffect(() => {
     fetch("/me")
       .then((response) => {
       if (response.ok) {
         response.json().then((user) => handleLogin(user));
+        getNeeds()
       }
       else {
         console.log("Auto Login: response not OK")
       }
     });
   }, []);
+
+  function getNeeds() {
+    fetch("/needs")
+      .then((r) => r.json())
+      .then((data) => setNeeds(data));
+  }
+  
 
   function handleLogin(user) {
     setUser(user.username)
@@ -50,6 +60,7 @@ function App() {
             <h1>Welcome to Neighborshare</h1>
             {isLoggedIn ? <h2>{user}</h2> : <h2>Please Signup</h2>}
             {isLoggedIn ? <Logout onLogout={onLogout}/> : <Signup onSignup={handleSignup}/>}
+            <NeedsList needs={needs}/>
         </Route>
 
       </Switch>
