@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Login from './Login';
 import Logout from './Logout';
 import Signup from './Signup';
+import { Route, Switch } from "react-router-dom";
 
 function App() {
 
@@ -40,9 +41,19 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Welcome to Neighborshare</h1>
-      {isLoggedIn ? <h2>{user}</h2> : <h2>Please Signup</h2>}
-      {isLoggedIn ? <Logout onLogout={onLogout}/> : <Signup onSignup={handleSignup}/>}
+      <Switch>
+      <Route exact path="/login">
+          <Login onLogin={handleLogin}/>
+        </Route>
+
+        <Route exact path="/">
+            <h1>Welcome to Neighborshare</h1>
+            {isLoggedIn ? <h2>{user}</h2> : <h2>Please Signup</h2>}
+            {isLoggedIn ? <Logout onLogout={onLogout}/> : <Signup onSignup={handleSignup}/>}
+        </Route>
+
+      </Switch>
+      
     </div>
   );
 } 
