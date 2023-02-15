@@ -1,4 +1,7 @@
 class NeedsController < ApplicationController
+
+    skip_before_action :authorize, only: :index
+
     def index
         needs = Need.all
         render json: needs

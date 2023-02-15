@@ -17,11 +17,11 @@ function App() {
       .then((response) => {
       if (response.ok) {
         response.json().then((user) => handleLogin(user));
-        getNeeds()
       }
       else {
         console.log("Auto Login: response not OK")
       }
+      getNeeds()
     });
   }, []);
 
