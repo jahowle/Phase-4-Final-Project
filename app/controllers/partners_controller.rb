@@ -3,7 +3,7 @@ class PartnersController < ApplicationController
 
     def index
         partners = Partner.all
-        render json: partners, only: [:name, :location_id]
+        render json: partners, only: [:name, :location_id, :id]
     end
     
     def show
