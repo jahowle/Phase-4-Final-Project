@@ -90,22 +90,14 @@ Partner.create(
 
 end
 
-30.times do
-    randAmount = rand(1..400)
-    Need.create(
-        description: ["Help with food", "Help with bills", "Help with car", "Help with textbooks", "Help with medical", "Help with shelter", "Help with clothing", "Help with transport", "Help with furnishings", "Help with groceries"].sample,
-        amount: randAmount,
-        neighbor_id: Neighbor.pluck(:id).sample,
-        category_id: Category.pluck(:id).sample,
-        funded: false,
-        remaining_balance: randAmount
-        
+10.times do
+    User.create(
+        username: Faker::Name.name,
+        partner_id: Partner.pluck(:id).sample,
+        password: "123",
+        password_confirmation: "123"
     )
-
 end
-
-
-
 
 
 30.times do
@@ -115,9 +107,28 @@ end
 
 end
 
+
+
+30.times do
+    # randAmount = rand(1..400)
+    Need.create(
+        description: "I need Help",
+        amount: 400,
+        neighbor_id: Neighbor.pluck(:id).sample,
+        category_id: Category.pluck(:id).sample,
+        funded: false,
+        remaining_balance: 400,
+        user_id: User.pluck(:id).sample
+
+        
+    )
+
+
+end
+
 30.times do
     Donation.create(
-        amount: rand(1..400),
+        amount: 1,
         need_id: Need.pluck(:id).sample,
         donor_id: Donor.pluck(:id).sample
 

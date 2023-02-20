@@ -1,6 +1,6 @@
 class NeedsController < ApplicationController
 
-    skip_before_action :authorize, only: :index
+    skip_before_action :authorize, only: [:index, :create]
 
     def index
         needs = Need.all
@@ -26,6 +26,6 @@ class NeedsController < ApplicationController
     private
 
     def need_params
-        params.permit(:description, :amount, :category_id, :neighbor_id)
+        params.permit(:description, :amount, :category_id, :neighbor_id, :user_id, :remaining_balance, :funded )
     end
 end

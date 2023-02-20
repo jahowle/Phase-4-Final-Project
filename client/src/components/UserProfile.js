@@ -3,7 +3,9 @@ import React, {useState, useEffect} from "react";
 
 function UserProfile({user, needs}) {
 
-    console.log(user, needs)
+    const needsToDisplay = needs
+   
+    console.log(needsToDisplay)
 
 
 

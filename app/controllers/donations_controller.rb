@@ -1,4 +1,7 @@
 class DonationsController < ApplicationController
+
+    skip_before_action :authorize, only: [:index, :create]
+
     def index
         donations = Donation.all
         render json: donations
