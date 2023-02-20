@@ -5,10 +5,11 @@ import Logout from './Logout';
 import Signup from './Signup';
 import NeedsList from './NeedsList';
 import { Route, Switch } from "react-router-dom";
+import UserProfile from './UserProfile';
 
 function App() {
 
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [needs, setNeeds] = useState([])
 
@@ -21,7 +22,7 @@ function App() {
       else {
         console.log("Auto Login: response not OK")
       }
-      getNeeds()
+      getNeeds()  
     });
   }, []);
 
@@ -33,12 +34,12 @@ function App() {
   
 
   function handleLogin(user) {
-    setUser(user.username)
+    setUser(user)
     setIsLoggedIn(true)
   }
 
   function handleSignup(user) {
-    setUser(user.username)
+    setUser(user)
     setIsLoggedIn(true)
   }
 
@@ -56,9 +57,13 @@ function App() {
           <Login onLogin={handleLogin}/>
         </Route>
 
+        <Route exact path="/profile">
+          <UserProfile user={user} needs={needs}/>
+        </Route>
+
         <Route exact path="/">
             <h1>Welcome to Neighborshare</h1>
-            {isLoggedIn ? <h2>{user}</h2> : <h2>Please Signup</h2>}
+            {isLoggedIn ? <h2>Hi, {user.username}</h2> : <h2>Please Signup</h2>}
             {isLoggedIn ? <Logout onLogout={onLogout}/> : <Signup onSignup={handleSignup}/>}
             <NeedsList needs={needs}/>
         </Route>
