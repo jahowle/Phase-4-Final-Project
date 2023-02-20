@@ -1,6 +1,10 @@
 import React, {useState} from "react";
+import { useHistory } from "react-router-dom";
+
 
 function Login({ onLogin }) {
+  const history = useHistory();
+
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
@@ -21,6 +25,7 @@ function Login({ onLogin }) {
         if(r.ok) {
             console.log("Login: Success")
             r.json().then((user) => onLogin(user))
+            history.push("/");
         }
         else {
             console.log("Login: Response Not OK")
@@ -46,7 +51,7 @@ function Login({ onLogin }) {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit">Partner SignUp</button>
+        <button type="submit">Login</button>
       </form>
       </div>
     );

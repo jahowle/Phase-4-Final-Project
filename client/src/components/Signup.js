@@ -2,8 +2,6 @@ import React, {useState} from "react";
 import { NavLink } from "react-router-dom";
 import PartnerSelect from "./PartnerSelect";
 
-// Need to add control to Partner select to make sure I only submit users for existing partners
-
 function Signup({onSignup}) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -49,12 +47,6 @@ function Signup({onSignup}) {
             onChange={(e) => setUsername(e.target.value)}
           />
           <label for="partner">Partner</label>
-          {/* <input
-              name="partner"
-            type="text"
-            value={partner}
-            onChange={(e) => setPartner(e.target.value)}
-          /> */}
           <PartnerSelect handlePartnerChange={handlePartnerChange}/>
           <label for="password">Password</label>
            <input
