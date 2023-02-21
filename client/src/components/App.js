@@ -6,6 +6,7 @@ import Signup from './Signup';
 import NeedsList from './NeedsList';
 import { Route, Switch } from "react-router-dom";
 import UserProfile from './UserProfile';
+import AddNeed from './AddNeed';
 
 function App() {
 
@@ -59,6 +60,10 @@ function App() {
 
         <Route exact path="/profile">
           <UserProfile user={user} needs={needs}/>
+        </Route>
+
+        <Route exact path="/add-need">
+          <AddNeed />
         </Route>
 
         <Route exact path="/">
