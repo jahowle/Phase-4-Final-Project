@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :locations, only: [:create, :index, :show]
   resources :donations, only: [:create, :index, :show]
   resources :donors, only: [:create, :index, :show]
-  resources :needs, only: [:create, :index, :show]
+  resources :needs, only: [:create, :index, :show, :destroy]
 
   get "/sessions", to: "sessions#index"
   post "/login", to: "sessions#create"

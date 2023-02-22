@@ -28,6 +28,10 @@ function App() {
     getNeeds()
   }, []);
 
+  function onDelete(id) {
+    setNeeds((needs) => needs.filter((need) => need.id !== id))
+  }
+
   function getNeeds() {
     fetch("/needs")
     .then((r) => r.json())
@@ -64,7 +68,7 @@ function App() {
         </Route>
 
         <Route exact path="/profile">
-          <UserProfile user={user} needs={needs}/>
+          <UserProfile user={user} needs={needs} onDelete={onDelete}/>
         </Route>
 
         <Route exact path="/add-need">

@@ -23,6 +23,15 @@ class NeedsController < ApplicationController
         render json: { errors: e.record.errors.full_messages }, status: :unprocessable_entity
     end
 
+    def destroy
+
+        need = Need.find_by(id: params[:id])
+        need.destroy
+        head :no_content
+
+    end
+
+
     private
 
     def need_params
