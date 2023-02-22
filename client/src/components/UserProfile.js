@@ -12,7 +12,7 @@ function UserProfile({user, needs}) {
     return(
         <div>
             <h1>{user.username}'s Profile</h1>
-            <NeedsList needs={needsToDisplay}/>
+            <NeedsList needs={needsToDisplay} auth={true}/>
         </div>
     )
 }
