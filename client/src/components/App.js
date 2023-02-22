@@ -25,7 +25,11 @@ function App() {
       }
       getNeeds()  
     });
-  }, []);
+  }, [needs]);
+
+  function updateNeeds(need) {
+    setNeeds(...needs, need)
+  }
 
   function getNeeds() {
     fetch("/needs")
@@ -63,7 +67,7 @@ function App() {
         </Route>
 
         <Route exact path="/add-need">
-          <AddNeed />
+          <AddNeed user={user} updateNeeds={updateNeeds}/>
         </Route>
 
         <Route exact path="/">
