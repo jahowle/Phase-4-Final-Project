@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import CategorySelect from "./CategorySelect";
 import NeighborSelect from "./NeighborSelect";
-import { useHistory } from "react-router-dom";
+import { useHistory, Redirect } from "react-router-dom";
 
 function AddNeed({user, updateNeeds}) {
 
@@ -32,9 +32,11 @@ function AddNeed({user, updateNeeds}) {
         }),
     })
     .then((r) => r.json())
-    .then((data) => console.log(data))
-
-    history.push("/");
+    .then((data) => {
+        updateNeeds(data)
+        
+        history.push("/");
+    })
 
     }
 

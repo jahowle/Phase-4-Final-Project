@@ -1,12 +1,9 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 
 
 function UserProfile({user, needs}) {
 
-    const needsToDisplay = needs
-   
-    console.log(needsToDisplay)
-
+    console.log(needs)
 
 
     return(

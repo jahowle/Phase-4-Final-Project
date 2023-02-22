@@ -23,21 +23,22 @@ function App() {
       else {
         console.log("Auto Login: response not OK")
       }
-      getNeeds()  
-    });
-  }, [needs]);
-
-  function updateNeeds(need) {
-    setNeeds(...needs, need)
-  }
+    })
+    
+    getNeeds()
+  }, []);
 
   function getNeeds() {
     fetch("/needs")
-      .then((r) => r.json())
-      .then((data) => setNeeds(data));
+    .then((r) => r.json())
+    .then((data) => setNeeds(data))
+  }
+
+  function updateNeeds(need) {
+    console.log(need)
+    setNeeds([...needs, need])
   }
   
-
   function handleLogin(user) {
     setUser(user)
     setIsLoggedIn(true)

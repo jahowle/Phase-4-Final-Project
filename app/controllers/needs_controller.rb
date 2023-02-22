@@ -18,7 +18,7 @@ class NeedsController < ApplicationController
 
     def create
         need = Need.create!(need_params)
-        render json: need, status: :created
+        render json: need, include: [:neighbor, :category], status: :created
         rescue ActiveRecord::RecordInvalid => e
         render json: { errors: e.record.errors.full_messages }, status: :unprocessable_entity
     end
