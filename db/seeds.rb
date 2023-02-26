@@ -93,6 +93,7 @@ end
 10.times do
     User.create(
         username: Faker::Name.name,
+        role: ["Partner", "Donor"].sample,
         partner_id: Partner.pluck(:id).sample,
         password: "123",
         password_confirmation: "123"
