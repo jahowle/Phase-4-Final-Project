@@ -13,6 +13,7 @@ function App() {
   const [user, setUser] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [needs, setNeeds] = useState([])
+  
 
   useEffect(() => {
     fetch("/me")
@@ -32,8 +33,8 @@ function App() {
     setNeeds((needs) => needs.filter((need) => need.id !== id))
   }
 
-  function getNeeds() {
-    fetch("/needs")
+  async function getNeeds() {
+    await fetch("/needs")
     .then((r) => r.json())
     .then((data) => setNeeds(data))
   }
@@ -59,7 +60,6 @@ function App() {
   }
 
 
-
   return (
     <div className="App">
       <Switch>
@@ -79,7 +79,7 @@ function App() {
             <h1>Welcome to Neighborshare</h1>
             {isLoggedIn ? <h2>Hi, {user.username}</h2> : <h2>Please Signup</h2>}
             {isLoggedIn ? <Logout onLogout={onLogout}/> : <Signup onSignup={handleSignup}/>}
-            <NeedsList needs={needs}/>
+            <NeedsList needs={needs} user={user}/>
         </Route>
 
       </Switch>
