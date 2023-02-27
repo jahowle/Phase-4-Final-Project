@@ -1,11 +1,10 @@
 import React, {useState} from "react";
 import { NavLink } from "react-router-dom";
-import PartnerSelect from "./PartnerSelect";
 
-function Signup({onSignup}) {
+
+function DonorSignup({onSignup}) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [partner, setPartner] = useState(0);
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
     
     function handleSubmit(e) {
@@ -17,8 +16,7 @@ function Signup({onSignup}) {
           },
           body: JSON.stringify({ 
               username,
-              partner_id: partner,
-              role: "Partner",
+              role: "Donor",
               password,
               password_confirmation: passwordConfirmation
            }),
@@ -32,10 +30,6 @@ function Signup({onSignup}) {
             }
           })
       }
-
-      function handlePartnerChange(event){
-       setPartner(event.target.value)
-      }
     
       return (
           <div>
@@ -47,8 +41,6 @@ function Signup({onSignup}) {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
-          <label for="partner">Partner</label>
-          <PartnerSelect handlePartnerChange={handlePartnerChange}/>
           <label for="password">Password</label>
            <input
               name="password"
@@ -63,7 +55,7 @@ function Signup({onSignup}) {
           value={passwordConfirmation}
           onChange={(e) => setPasswordConfirmation(e.target.value)}
         />
-          <button type="submit">Partner SignUp</button>
+          <button type="submit">Donor SignUp</button>
         </form>
         <h4>Already have an account?</h4>
         <NavLink
@@ -74,4 +66,4 @@ function Signup({onSignup}) {
       );
 }
 
-export default Signup
+export default DonorSignup

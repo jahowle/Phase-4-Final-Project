@@ -7,12 +7,14 @@ import NeedsList from './NeedsList';
 import { Route, Switch } from "react-router-dom";
 import UserProfile from './UserProfile';
 import AddNeed from './AddNeed';
+import SignUpButtons from './SignUpButtons';
 
 function App() {
 
   const [user, setUser] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [needs, setNeeds] = useState([])
+  const [signUp, setSignUp] = useState(null)
   
 
   useEffect(() => {
@@ -59,6 +61,10 @@ function App() {
     setIsLoggedIn(!isLoggedIn)
   }
 
+  function signUpSelect(role) {
+    setSignUp(role)
+  }
+
 
   return (
     <div className="App">
@@ -75,10 +81,14 @@ function App() {
           <AddNeed user={user} updateNeeds={updateNeeds}/>
         </Route>
 
+        <Route exact path="/partner-signup">
+          <Signup onSignup={handleSignup}/>
+        </Route>
+
         <Route exact path="/">
             <h1>Welcome to Neighborshare</h1>
             {isLoggedIn ? <h2>Hi, {user.username}</h2> : <h2>Please Signup</h2>}
-            {isLoggedIn ? <Logout onLogout={onLogout}/> : <Signup onSignup={handleSignup}/>}
+            {isLoggedIn ? <Logout onLogout={onLogout}/> : <SignUpButtons signUpSelect={signUpSelect}/>}
             <NeedsList needs={needs} user={user}/>
         </Route>
 
