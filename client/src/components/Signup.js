@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import PartnerSelect from "./PartnerSelect";
 
 function Signup({onSignup}) {
@@ -7,6 +7,8 @@ function Signup({onSignup}) {
     const [password, setPassword] = useState("");
     const [partner, setPartner] = useState(0);
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
+
+    const history = useHistory()
     
     function handleSubmit(e) {
         e.preventDefault();
@@ -26,11 +28,14 @@ function Signup({onSignup}) {
           .then((r) => {
             if(r.ok) {
                 r.json().then((user) => onSignup(user))
+                history.push("/");
             }
             else {
                 console.log("Signup: Response Not OK")
             }
           })
+
+
       }
 
       function handlePartnerChange(event){

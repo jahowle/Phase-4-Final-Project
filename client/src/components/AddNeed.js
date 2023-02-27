@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import CategorySelect from "./CategorySelect";
 import NeighborSelect from "./NeighborSelect";
-import { useHistory, Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 function AddNeed({user, updateNeeds}) {
 
