@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 
 
 function DonorSignup({onSignup}) {
@@ -7,6 +7,8 @@ function DonorSignup({onSignup}) {
     const [password, setPassword] = useState("");
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
     
+    const history = useHistory()
+
     function handleSubmit(e) {
         e.preventDefault();
         fetch("/signup", {
@@ -17,6 +19,7 @@ function DonorSignup({onSignup}) {
           body: JSON.stringify({ 
               username,
               role: "Donor",
+              partner_id: 203,
               password,
               password_confirmation: passwordConfirmation
            }),
@@ -24,6 +27,7 @@ function DonorSignup({onSignup}) {
           .then((r) => {
             if(r.ok) {
                 r.json().then((user) => onSignup(user))
+                history.push("/");
             }
             else {
                 console.log("Signup: Response Not OK")

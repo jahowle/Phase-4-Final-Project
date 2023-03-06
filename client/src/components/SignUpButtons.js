@@ -19,7 +19,12 @@ function SignUpButtons({signUpSelect}) {
                 Partner SignUp
             </NavLink>
             </button>
-            <button onClick={handleDonorSignUp}>Donor SignUp</button>
+            <button onClick={handleDonorSignUp}>
+                <NavLink to="/donor-signup" exact>
+                Donor SignUp
+                </NavLink>
+                
+            </button>
         </div>
     )
 }

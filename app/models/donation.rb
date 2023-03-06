@@ -1,8 +1,8 @@
 class Donation < ApplicationRecord
     belongs_to :need
-    belongs_to :donor
+    belongs_to :user
 
-    validates :donor_id, :need_id, :amount, presence: true
+    validates :user_id, :need_id, :amount, presence: true
     validate :no_negative_balance
 
     def no_negative_balance

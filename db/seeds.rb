@@ -59,6 +59,11 @@ Partner.create(
     name: "Boys and Girls Club",
     location_id: Location.pluck(:id).sample
     )
+
+    Partner.create(
+        name: "None",
+        location_id: Location.pluck(:id).sample
+        )
     Partner.create(
         name: "United Way",
         location_id: Location.pluck(:id).sample
@@ -101,13 +106,6 @@ end
 end
 
 
-30.times do
-    Donor.create(
-        name: Faker::Name.name
-    )
-
-end
-
 
 
 30.times do
@@ -131,7 +129,7 @@ end
     Donation.create(
         amount: 1,
         need_id: Need.pluck(:id).sample,
-        donor_id: Donor.pluck(:id).sample
+        user_id: User.pluck(:id).sample
 
     )
 end

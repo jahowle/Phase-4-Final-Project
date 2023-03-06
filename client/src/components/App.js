@@ -8,6 +8,7 @@ import { Route, Switch } from "react-router-dom";
 import UserProfile from './UserProfile';
 import AddNeed from './AddNeed';
 import SignUpButtons from './SignUpButtons';
+import DonorSignup from './DonorSignup';
 
 function App() {
 
@@ -83,6 +84,10 @@ function App() {
 
         <Route exact path="/partner-signup">
           <Signup onSignup={handleSignup}/>
+        </Route>
+
+        <Route exact path="/donor-signup">
+          <DonorSignup onSignup={handleSignup}/>
         </Route>
 
         <Route exact path="/">

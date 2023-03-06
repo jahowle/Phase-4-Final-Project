@@ -5,6 +5,8 @@ function NeedCard({id, description, neighbor, remainingBalance, category, auth, 
     const [amount, setAmount] = useState(null)
     const [balance, setBalance] = useState(remainingBalance)
 
+    console.log(userId)
+
     function handleDelete() {
         fetch(`needs/${id}`, {
             method: "DELETE",
@@ -26,7 +28,7 @@ function NeedCard({id, description, neighbor, remainingBalance, category, auth, 
             },
             body: JSON.stringify({
                 amount: amount,
-                donor_id: 870,
+                user_id: userId,
                 need_id: id
                
             }),
