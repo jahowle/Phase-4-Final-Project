@@ -14,6 +14,12 @@ function SignUpButtons({signUpSelect}) {
                 Partner SignUp
             </NavLink>
             </button>
+
+            <button className="nav-button">
+                <NavLink to="/login" exact>
+                    Login
+                </NavLink>
+            </button>
         </div>
     )
 }

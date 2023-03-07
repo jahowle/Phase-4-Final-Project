@@ -22,6 +22,21 @@ function Logout({onLogout}) {
             Add need
             </NavLink>
         </button>
+
+        <button className="nav-button">
+            <NavLink to="/add-category">
+            Add Category
+            </NavLink>
+            
+        </button>
+
+        <button className="nav-button">
+            Add Location
+        </button>
+
+        <button className="nav-button">
+            Add Neighbor
+        </button>
         </div>
     )
 }

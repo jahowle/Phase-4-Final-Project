@@ -1,15 +1,13 @@
 import '../App.css';
 import { useState, useEffect } from "react";
 import Login from './Login';
-import Logout from './Logout';
 import Signup from './Signup';
 import NeedsList from './NeedsList';
 import { Route, Switch } from "react-router-dom";
 import UserProfile from './UserProfile';
 import AddNeed from './AddNeed';
-import SignUpButtons from './SignUpButtons';
-import DonorSignup from './DonorSignup';
 import NavBar from './NavBar';
+import AddCategory from './AddCategory';
 
 function App() {
 
@@ -71,7 +69,7 @@ function App() {
   return (
     <div className="App">
 
-      <NavBar isLoggedIn={isLoggedIn} onLogout={onLogout} signUpSelect={signUpSelect}/>
+      <NavBar isLoggedIn={isLoggedIn} onLogout={onLogout} signUpSelect={signUpSelect} user={user}/>
 
       <Switch>
       <Route exact path="/login">
@@ -90,10 +88,12 @@ function App() {
           <Signup onSignup={handleSignup}/>
         </Route>
 
+        <Route exact path="/add-category">
+          <AddCategory />
+        </Route>
+
         <Route exact path="/">
             <h1>Welcome to Neighborshare</h1>
-            {isLoggedIn ? <h2>Hi, {user.username}</h2> : <h2>Please Signup</h2>}
-            {isLoggedIn ? <Logout onLogout={onLogout}/> : <SignUpButtons signUpSelect={signUpSelect}/>}
             <NeedsList needs={needs} user={user}/>
         </Route>
 
