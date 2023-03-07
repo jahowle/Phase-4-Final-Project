@@ -9,6 +9,7 @@ import UserProfile from './UserProfile';
 import AddNeed from './AddNeed';
 import SignUpButtons from './SignUpButtons';
 import DonorSignup from './DonorSignup';
+import NavBar from './NavBar';
 
 function App() {
 
@@ -69,6 +70,9 @@ function App() {
 
   return (
     <div className="App">
+
+      <NavBar isLoggedIn={isLoggedIn} onLogout={onLogout} signUpSelect={signUpSelect}/>
+
       <Switch>
       <Route exact path="/login">
           <Login onLogin={handleLogin}/>
@@ -84,10 +88,6 @@ function App() {
 
         <Route exact path="/partner-signup">
           <Signup onSignup={handleSignup}/>
-        </Route>
-
-        <Route exact path="/donor-signup">
-          <DonorSignup onSignup={handleSignup}/>
         </Route>
 
         <Route exact path="/">

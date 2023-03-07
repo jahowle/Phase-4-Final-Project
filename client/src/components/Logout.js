@@ -11,13 +11,13 @@ function Logout({onLogout}) {
 
     return(
         <div>
-        <button onClick={handleLogout}>Logout</button>
-        <button>
+        <button className="nav-button" onClick={handleLogout}>Logout</button>
+        <button className="nav-button">
             <NavLink to="/profile" exact>
             My Profile
             </NavLink>
             </button>
-        <button>
+        <button className="nav-button">
             <NavLink to="/add-need" exact>
             Add need
             </NavLink>

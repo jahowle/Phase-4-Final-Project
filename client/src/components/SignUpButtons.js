@@ -7,23 +7,12 @@ function SignUpButtons({signUpSelect}) {
         signUpSelect("Partner")
     }
 
-    function handleDonorSignUp(){
-        signUpSelect("Donor")
-    }
-
-
     return(
         <div>
-            <button onClick={handlePartnerSignUp}>
+            <button className="nav-button" onClick={handlePartnerSignUp}>
             <NavLink to="/partner-signup" exact>
                 Partner SignUp
             </NavLink>
-            </button>
-            <button onClick={handleDonorSignUp}>
-                <NavLink to="/donor-signup" exact>
-                Donor SignUp
-                </NavLink>
-                
             </button>
         </div>
     )
