@@ -32,16 +32,16 @@ function AddLocation() {
 
 
             <form id="add-location-form" onSubmit={handleSubmit}>
-                 <label className="input">Location name
+                 <label className="input">Location Name
                     <input
                         type="text"
-                        name="Category Name"
-                        onChange={(e) => setCategory(e.target.value)}
-                        value={category}
+                        name="Location Name"
+                        onChange={(e) => setLocation(e.target.value)}
+                        value={location}
                     />
                 </label>
                
-                <button id="submit-button" type="submit">Submit Category</button>
+                <button id="submit-button" type="submit">Submit Location</button>
 
             </form>
 
@@ -50,4 +50,4 @@ function AddLocation() {
     )
 }
 
-export default AddCategory
+export default AddLocation

@@ -8,6 +8,9 @@ import UserProfile from './UserProfile';
 import AddNeed from './AddNeed';
 import NavBar from './NavBar';
 import AddCategory from './AddCategory';
+import AddLocation from './AddLocation'
+import AddPartner from './AddPartner';
+import AddNeighbor from './AddNeighbor';
 
 function App() {
 
@@ -91,6 +94,23 @@ function App() {
         <Route exact path="/add-category">
           <AddCategory />
         </Route>
+
+        <Route exact path="/add-location">
+          <AddLocation />
+        </Route>
+
+        <Route exact path="/add-partner">
+          <AddPartner />
+        </Route>
+
+        <Route exact path="/add-neighbor">
+          <AddNeighbor />
+        </Route>
+        
+
+
+
+      
 
         <Route exact path="/">
             <h1>Welcome to Neighborshare</h1>

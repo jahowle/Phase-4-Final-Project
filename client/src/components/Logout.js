@@ -31,13 +31,30 @@ function Logout({onLogout}) {
         </button>
 
         <button className="nav-button">
+            <NavLink to="/add-location">
             Add Location
+            </NavLink>
+            
         </button>
 
         <button className="nav-button">
+            <NavLink to="/add-neighbor">
             Add Neighbor
+
+            </NavLink>
         </button>
+
+        <button className="nav-button">
+            <NavLink to="/add-partner">
+            Add Partner Organization
+            </NavLink>
+            
+        </button>
+
         </div>
+        
+
+        
     )
 }
 
