@@ -19,7 +19,7 @@ class DonationsController < ApplicationController
     def create
         donation = Donation.create!(donation_params)
         donation.update_need_balance
-        render json: [donation], status: :created
+        render json: [donation], include: [:need], status: :created
         rescue ActiveRecord::RecordInvalid => e
         render json: { errors: e.record.errors.full_messages }, status: :unprocessable_entity
     end

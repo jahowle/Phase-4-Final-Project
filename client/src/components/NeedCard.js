@@ -34,7 +34,14 @@ function NeedCard({id, description, neighbor, remainingBalance, category, auth, 
             }),
         })
         .then((r) => r.json())
-        .then((data) => {updateBalance(data)})
+        .then((data) => {
+            if(data[0].need.funded === false) {
+                updateBalance(data)
+            } else {
+                onDelete(data[0].need_id)
+            }
+        
+        })
     
 
     }
@@ -44,6 +51,7 @@ function NeedCard({id, description, neighbor, remainingBalance, category, auth, 
         const donationAmount = amount[0].amount
 
         setBalance(balance - donationAmount)
+
     }
 
     function handleAmountChange(e) {

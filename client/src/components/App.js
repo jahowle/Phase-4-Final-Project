@@ -37,6 +37,7 @@ function App() {
   function onDelete(id) {
     setNeeds((needs) => needs.filter((need) => need.id !== id))
   }
+  
 
   async function getNeeds() {
     await fetch("/needs")
@@ -114,7 +115,7 @@ function App() {
 
         <Route exact path="/">
             <h1>Welcome to Neighborshare</h1>
-            <NeedsList needs={needs} user={user}/>
+            <NeedsList needs={needs} user={user} onDelete={onDelete}/>
         </Route>
 
       </Switch>

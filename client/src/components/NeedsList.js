@@ -3,7 +3,11 @@ import NeedCard from "./NeedCard";
 
 function NeedsList({needs, auth, onDelete, user}) {
 
-    const needsToDisplay = needs.map((need) => {
+    const filteredNeeds = needs.filter((need) => need.funded === false)
+
+    console.log(filteredNeeds)
+
+    const needsToDisplay = filteredNeeds.map((need) => {
         return <NeedCard 
         key={need.id} 
         id={need.id} 
@@ -19,7 +23,6 @@ function NeedsList({needs, auth, onDelete, user}) {
 
     return(
         <div>
-
             {needsToDisplay}
         </div>
     )
