@@ -5,8 +5,6 @@ function NeedCard({id, description, neighbor, remainingBalance, category, auth, 
     const [amount, setAmount] = useState(null)
     const [balance, setBalance] = useState(remainingBalance)
 
-    console.log(userId)
-
     function handleDelete() {
         fetch(`needs/${id}`, {
             method: "DELETE",
@@ -66,16 +64,7 @@ function NeedCard({id, description, neighbor, remainingBalance, category, auth, 
             <h4>{category}</h4>
             <p>{description}</p>
             {auth ? <button onClick={handleDelete}>Delete</button> : ""}
-            <form id="add-donation-form" onSubmit={handleSubmit}>
-                <input
-                 onChange={handleAmountChange}
-                 type="number"
-                 name="amount"
-                 min="1"
-                 max="400"
-                />
-                <button id="submit-button" type="submit">Submit</button>
-            </form>
+            {auth ? <form id="add-donation-form" onSubmit={handleSubmit}><input onChange={handleAmountChange} type="number" name="amount" min="1" max="400"/><button id="submit-button" type="submit">Submit</button></form> : "" }
         </div>
     )
 }

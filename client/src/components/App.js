@@ -115,7 +115,7 @@ function App() {
 
         <Route exact path="/">
             <h1>Welcome to Neighborshare</h1>
-            <NeedsList needs={needs} user={user} onDelete={onDelete}/>
+            <NeedsList needs={needs} user={user} onDelete={onDelete} auth={isLoggedIn}/>
         </Route>
 
       </Switch>
