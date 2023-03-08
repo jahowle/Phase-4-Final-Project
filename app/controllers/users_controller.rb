@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     end
   
     def show
-      render json: @current_user, include: [:needs, :partner]
+      render json: @current_user, include: [:needs, :partner, :neighbors]
     end
     
     private

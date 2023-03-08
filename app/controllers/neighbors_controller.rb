@@ -1,13 +1,13 @@
 class NeighborsController < ApplicationController
     def index
         neighbors = Neighbor.all
-        render json: neighbors
+        render json: neighbors, include: [:users]
     end
     
     def show
         neighbor = Neighbor.find_by(id: params[:id])
             if neighbor
-                render json: neighbor
+                render json: neighbor, include: [:users]
             else
                 render json: { error: "Neighbor not found" }, status: :not_found
             end
