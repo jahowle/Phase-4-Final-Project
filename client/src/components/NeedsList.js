@@ -22,7 +22,7 @@ function NeedsList({needs, auth, onDelete, user}) {
     })
 
     return(
-        <div>
+        <div id="needs-list">
             {needsToDisplay}
         </div>
     )

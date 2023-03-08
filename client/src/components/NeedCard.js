@@ -65,7 +65,6 @@ function NeedCard({id, description, neighbor, remainingBalance, category, auth, 
             <h4>{balance}</h4>
             <h4>{category}</h4>
             <p>{description}</p>
-            <p>{id}</p>
             {auth ? <button onClick={handleDelete}>Delete</button> : ""}
             <form id="add-donation-form" onSubmit={handleSubmit}>
                 <input

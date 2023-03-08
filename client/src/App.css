@@ -4,8 +4,10 @@
 
 .need-card {
   background-color: aqua;
-  height: 300px;
-  width: 300px;
+  height: 250px;
+  width: 250px;
+  margin: 16px;
+  padding: 16px;
 }
 
 #navbar {
@@ -22,4 +24,10 @@
 
 #welcome-message{
   margin-right: 32px;
+}
+
+#needs-list{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
