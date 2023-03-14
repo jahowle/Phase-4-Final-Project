@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-function NeedCard({id, description, neighbor, remainingBalance, category, auth, onDelete, userId, handleUpdateBalance}) {
+function NeedCard({id, description, neighbor, remainingBalance, category, auth, onDelete, userId, handleUpdateBalance, mine}) {
 
     const [amount, setAmount] = useState(null)
     const [balance, setBalance] = useState(remainingBalance)
@@ -63,7 +63,7 @@ function NeedCard({id, description, neighbor, remainingBalance, category, auth, 
             <h4>{balance}</h4>
             <h4>{category}</h4>
             <p>{description}</p>
-            {auth ? <button onClick={handleDelete}>Delete</button> : ""}
+            {mine ? <button onClick={handleDelete}>Delete</button> : ""}
             {auth ? <form id="add-donation-form" onSubmit={handleSubmit}><input onChange={handleAmountChange} type="number" name="amount" min="1" max="400"/><button id="submit-button" type="submit">Submit</button></form> : "" }
         </div>
     )

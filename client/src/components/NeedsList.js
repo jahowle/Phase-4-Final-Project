@@ -1,7 +1,7 @@
 import React from "react";
 import NeedCard from "./NeedCard";
 
-function NeedsList({needs, auth, onDelete, user}) {
+function NeedsList({needs, auth, onDelete, user, mine}) {
 
     const filteredNeeds = needs.filter((need) => need.funded === false)
 
@@ -16,6 +16,7 @@ function NeedsList({needs, auth, onDelete, user}) {
         category={need.category.name} 
         remainingBalance={need.remaining_balance} 
         auth={auth} 
+        mine={mine}
         onDelete={onDelete} 
         userId={user.id} 
         />

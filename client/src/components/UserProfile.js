@@ -11,7 +11,7 @@ function UserProfile({user, needs, onDelete}) {
         <div>
             <h1>{user.username}'s Profile</h1>
             {/* <h2>Partner: {userPartner}</h2> */}
-            <NeedsList needs={needsToDisplay} auth={true} onDelete={onDelete} user={user} />
+            <NeedsList needs={needsToDisplay} auth={true} mine={true} onDelete={onDelete} user={user} />
         </div>
     )
 }
