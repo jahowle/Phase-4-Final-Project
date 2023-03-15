@@ -32,7 +32,7 @@ function Login() {
             history.push("/");
         }
         else {
-            console.log("Login: Response Not OK")
+          r.json().then((errorData) => setErrors(errorData.error))
         }
       })
     }
@@ -56,6 +56,7 @@ function Login() {
           onChange={(e) => setPassword(e.target.value)}
         />
         <button type="submit">Login</button>
+        {errors.length > 0 ? <p style={{ color: "red" }}>{errors}</p> : ""}
       </form>
       </div>
     );

@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 function AddLocation() {
 
     const [location, setLocation] = useState("")
+    const [errors, setErrors] = useState([])
     const history = useHistory();
 
     function handleSubmit(e) {
@@ -19,9 +20,14 @@ function AddLocation() {
                
             }),
         })
-        .then((r) => r.json())
-        .then((data) => {
-            history.push("/");
+        .then((r) => {
+            if (r.ok) {
+                r.json().then((data) => {
+                    history.push("/")
+                })
+            } else {
+                r.json().then((errorData) => setErrors(errorData.errors))
+            }
         })
     
         }
@@ -42,6 +48,12 @@ function AddLocation() {
                 </label>
                
                 <button id="submit-button" type="submit">Submit Location</button>
+
+                {errors.length > 0 && ( 
+                <p style={{ color: "red" }}>
+                {errors.map((error) => (<p key={error}>{error}</p>))}
+                </p>
+                )}
 
             </form>
 

@@ -68,13 +68,14 @@ function NeedCard({id, description, neighbor, remainingBalance, category, auth, 
             <p>{description}</p>
             {mine ? <button onClick={handleDelete}>Delete</button> : ""}
             {auth ? <form id="add-donation-form" onSubmit={handleSubmit}><input onChange={handleAmountChange} type="number" name="amount" min="1" max="400"/>
-            {errors.length > 0 && (
+            
+            {errors.length > 0 && ( 
                 <p style={{ color: "red" }}>
-                {errors.map((error) => (
-                <p key={error}>{error}</p>
-                ))}
+                {errors.map((error) => (<p key={error}>{error}</p>))}
                 </p>
-             )}<button id="submit-button" type="submit">Submit</button></form> : "" }
+             )}
+             
+             <button id="submit-button" type="submit">Submit</button></form> : "" }
         </div>
     )
 }

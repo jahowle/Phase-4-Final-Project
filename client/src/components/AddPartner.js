@@ -6,6 +6,7 @@ function AddPartner() {
 
     const [partner, setPartner] = useState("")
     const [location, setLocation] = useState(null)
+    const [errors, setErrors] = useState([])
     const history = useHistory();
 
     function handleSubmit(e) {
@@ -22,11 +23,15 @@ function AddPartner() {
                
             }),
         })
-        .then((r) => r.json())
-        .then((data) => {
-            history.push("/");
+        .then((r) => {
+            if (r.ok) {
+                r.json().then((data) => {
+                    history.push("/")
+                })
+            } else {
+                r.json().then((errorData) => setErrors(errorData.errors))
+            }
         })
-    
         }
 
         function handleLocationChange(e) {
@@ -52,6 +57,12 @@ function AddPartner() {
 
                
                 <button id="submit-button" type="submit">Submit Partner Organization</button>
+
+                {errors.length > 0 && ( 
+                <p style={{ color: "red" }}>
+                {errors.map((error) => (<p key={error}>{error}</p>))}
+                </p>
+                )}
 
             </form>
 

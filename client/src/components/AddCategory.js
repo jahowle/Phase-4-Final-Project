@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 function AddCategory() {
 
     const [category, setCategory] = useState("")
+    const [errors, setErrors] = useState([])
     const history = useHistory();
 
     function handleSubmit(e) {
@@ -19,9 +20,15 @@ function AddCategory() {
                
             }),
         })
-        .then((r) => r.json())
-        .then((data) => {
-            history.push("/");
+        .then((r) => {
+            if (r.ok) {
+                r.json().then((data) => {
+                    history.push("/");
+                })
+            } else {
+                r.json().then((errorData) => setErrors(errorData.errors))
+            }
+        
         })
     
         }
@@ -42,6 +49,12 @@ function AddCategory() {
                 </label>
                
                 <button id="submit-button" type="submit">Submit Category</button>
+
+                {errors.length > 0 && ( 
+                <p style={{ color: "red" }}>
+                {errors.map((error) => (<p key={error}>{error}</p>))}
+                </p>
+                )}
 
             </form>
 

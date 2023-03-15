@@ -8,6 +8,7 @@ function AddNeighbor() {
     const [neighbor, setNeighbor] = useState("")
     const [partner, setPartner] = useState(null)
     const [bio, setBio] = useState("")
+    const [errors, setErrors] = useState([])
     const history = useHistory();
 
     function handleSubmit(e) {
@@ -25,9 +26,14 @@ function AddNeighbor() {
                
             }),
         })
-        .then((r) => r.json())
-        .then((data) => {
-            history.push("/");
+        .then((r) => {
+            if (r.ok) {
+                r.json().then((data) => {
+                    history.push("/")
+                })
+            } else {
+                r.json().then((errorData) => setErrors(errorData.errors))
+            }
         })
     
         }
@@ -64,6 +70,12 @@ function AddNeighbor() {
 
                
                 <button id="submit-button" type="submit">Submit Neighbor</button>
+
+                {errors.length > 0 && ( 
+                <p style={{ color: "red" }}>
+                {errors.map((error) => (<p key={error}>{error}</p>))}
+                </p>
+                )}
 
             </form>
 

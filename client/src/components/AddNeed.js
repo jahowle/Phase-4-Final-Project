@@ -10,6 +10,7 @@ function AddNeed({updateNeeds}) {
     const [category, setCategory] = useState(0)
     const [neighbor, setNeighbor] = useState(0)
     const [amount, setAmount] = useState(0)
+    const [errors, setErrors] = useState([])
 
     const { user } = useContext(UserContext);
 
@@ -34,14 +35,17 @@ function AddNeed({updateNeeds}) {
             remaining_balance: amount
         }),
     })
-    .then((r) => r.json())
-    .then((data) => {
-        updateNeeds(data)
-        
-        history.push("/");
+    .then((r) => {
+        if (r.ok) {
+            r.json().then((data) => {
+                updateNeeds(data)
+                history.push("/")
+            })
+        } else {
+            r.json().then((errorData) => setErrors(errorData.errors))
+        }
     })
-
-    }
+}
 
     
     function handleCategoryChange(e) {
@@ -89,6 +93,11 @@ function AddNeed({updateNeeds}) {
 
                 <button id="submit-button" type="submit">Submit Need</button>
 
+                {errors.length > 0 && ( 
+                <p style={{ color: "red" }}>
+                {errors.map((error) => (<p key={error}>{error}</p>))}
+                </p>
+                )}
             </form>
         </div>
     )

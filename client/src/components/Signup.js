@@ -8,6 +8,7 @@ function Signup() {
     const [password, setPassword] = useState("");
     const [partner, setPartner] = useState(0);
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
+    const [errors, setErrors] = useState([])
 
     const { handleSignup } = useContext(UserContext);
 
@@ -34,7 +35,7 @@ function Signup() {
                 history.push("/");
             }
             else {
-                console.log("Signup: Response Not OK")
+                r.json().then((errorData) => setErrors(errorData.errors))
             }
           })
 
@@ -78,6 +79,12 @@ function Signup() {
         to="/login">
             <button>Login</button>
         </NavLink>
+
+        {errors.length > 0 && ( 
+                <p style={{ color: "red" }}>
+                {errors.map((error) => (<p key={error}>{error}</p>))}
+                </p>
+                )}
         </div>
       );
 }
