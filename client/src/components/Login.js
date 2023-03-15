@@ -1,12 +1,15 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import { useHistory } from "react-router-dom";
+import { UserContext } from "../context/user";
 
 
-function Login({ onLogin }) {
+function Login() {
   const history = useHistory();
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+
+    const { handleLogin } = useContext(UserContext);
 
   
     function handleSubmit(e) {
@@ -24,7 +27,7 @@ function Login({ onLogin }) {
       .then((r) => {
         if(r.ok) {
             console.log("Login: Success")
-            r.json().then((user) => onLogin(user))
+            r.json().then((user) => handleLogin(user))
             history.push("/");
         }
         else {

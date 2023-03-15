@@ -1,9 +1,13 @@
-import React from "react";
+import React, {useContext} from "react";
 import { NavLink } from "react-router-dom";
 import Logout from "./Logout";
 import SignUpButtons from "./SignUpButtons";
+import { UserContext } from "../context/user";
 
-function NavBar({isLoggedIn, onLogout, signUpSelect, user}) {
+function NavBar() {
+
+    const { user, onLogout, isLoggedIn} = useContext(UserContext);
+
     return(
         <div id="navbar">
 
@@ -12,7 +16,7 @@ function NavBar({isLoggedIn, onLogout, signUpSelect, user}) {
             <button id="home-button" className="nav-button" onClick="">Home</button>
             </NavLink>
 
-            {isLoggedIn ? <Logout onLogout={onLogout}/> : <SignUpButtons signUpSelect={signUpSelect}/>}
+            {isLoggedIn ? <Logout onLogout={onLogout}/> : <SignUpButtons />}
 
         
 

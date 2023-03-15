@@ -1,7 +1,10 @@
-import React from "react";
+import React, {useContext} from "react";
 import NeedCard from "./NeedCard";
+import { UserContext } from "../context/user";
 
-function NeedsList({needs, auth, onDelete, user, mine}) {
+function NeedsList({needs, onDelete, mine}) {
+
+    const { user, isLoggedIn } = useContext(UserContext);
 
     const filteredNeeds = needs.filter((need) => need.funded === false)
 
@@ -13,7 +16,7 @@ function NeedsList({needs, auth, onDelete, user, mine}) {
         neighbor={need.neighbor.name} 
         category={need.category.name} 
         remainingBalance={need.remaining_balance} 
-        auth={auth} 
+        auth={isLoggedIn} 
         mine={mine}
         onDelete={onDelete} 
         userId={user.id} 

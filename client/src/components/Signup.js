@@ -1,12 +1,15 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import { NavLink, useHistory } from "react-router-dom";
 import PartnerSelect from "./PartnerSelect";
+import { UserContext } from "../context/user";
 
-function Signup({onSignup}) {
+function Signup() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [partner, setPartner] = useState(0);
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
+
+    const { handleSignup } = useContext(UserContext);
 
     const history = useHistory()
     
@@ -27,7 +30,7 @@ function Signup({onSignup}) {
         })
           .then((r) => {
             if(r.ok) {
-                r.json().then((user) => onSignup(user))
+                r.json().then((user) => handleSignup(user))
                 history.push("/");
             }
             else {

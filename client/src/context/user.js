@@ -5,9 +5,40 @@ const UserContext = React.createContext();
 
 // create a provider component
 function UserProvider({ children }) {
-  // the value prop of the provider will be our context data
-  // this value will be available to child components of this provider
-  return <UserContext.Provider value={null}>{children}</UserContext.Provider>;
+
+    const [user, setUser] = useState({});
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  useEffect(() => {
+    fetch("/me")
+      .then((response) => {
+      if (response.ok) {
+        response.json().then((user) => handleLogin(user));
+      }
+      else {
+        console.log("Auto Login: response not OK")
+      }
+    })
+    
+  }, []);
+
+
+  function handleLogin(user) {
+    setUser(user)
+    setIsLoggedIn(true)
+  }
+
+  function handleSignup(user) {
+    setUser(user)
+    setIsLoggedIn(true)
+  }
+
+  function onLogout() {
+    setUser("")
+    setIsLoggedIn(!isLoggedIn)
+  }
+
+  return <UserContext.Provider value={{user, setUser, handleSignup, handleLogin, isLoggedIn, setIsLoggedIn, onLogout}}>{children}</UserContext.Provider>;
 }
 
 export { UserContext, UserProvider };

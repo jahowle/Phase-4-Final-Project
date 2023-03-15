@@ -1,14 +1,17 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import CategorySelect from "./CategorySelect";
 import NeighborSelect from "./NeighborSelect";
 import { useHistory } from "react-router-dom";
+import { UserContext } from "../context/user";
 
-function AddNeed({user, updateNeeds}) {
+function AddNeed({updateNeeds}) {
 
     const [description, setDescription] = useState("")
     const [category, setCategory] = useState(0)
     const [neighbor, setNeighbor] = useState(0)
     const [amount, setAmount] = useState(0)
+
+    const { user } = useContext(UserContext);
 
     const history = useHistory();
 

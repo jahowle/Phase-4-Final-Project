@@ -1,8 +1,11 @@
-import React from "react";
+import React, {useContext} from "react";
 import NeedsList from "./NeedsList";
+import { UserContext } from "../context/user";
 
 
-function UserProfile({user, needs, onDelete}) {
+function UserProfile({needs, onDelete}) {
+
+    const { user } = useContext(UserContext);
 
 
     const needsToDisplay = needs.filter((need) => need.user_id === user.id)

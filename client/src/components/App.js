@@ -13,23 +13,11 @@ import AddPartner from './AddPartner';
 import AddNeighbor from './AddNeighbor';
 
 function App() {
-
-  const [user, setUser] = useState({});
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [needs, setNeeds] = useState([])
   
 
   useEffect(() => {
-    fetch("/me")
-      .then((response) => {
-      if (response.ok) {
-        response.json().then((user) => handleLogin(user));
-      }
-      else {
-        console.log("Auto Login: response not OK")
-      }
-    })
-    
+ 
     getNeeds()
   }, []);
 
@@ -49,42 +37,28 @@ function App() {
     setNeeds([...needs, need])
   }
   
-  function handleLogin(user) {
-    setUser(user)
-    setIsLoggedIn(true)
-  }
-
-  function handleSignup(user) {
-    setUser(user)
-    setIsLoggedIn(true)
-  }
-
-  function onLogout() {
-    setUser("")
-    setIsLoggedIn(!isLoggedIn)
-  }
 
 
   return (
     <div className="App">
 
-      <NavBar isLoggedIn={isLoggedIn} onLogout={onLogout}  user={user}/>
+      <NavBar />
 
       <Switch>
       <Route exact path="/login">
-          <Login onLogin={handleLogin}/>
+          <Login />
         </Route>
 
         <Route exact path="/profile">
-          <UserProfile user={user} needs={needs} onDelete={onDelete}/>
+          <UserProfile needs={needs} onDelete={onDelete}/>
         </Route>
 
         <Route exact path="/add-need">
-          <AddNeed user={user} updateNeeds={updateNeeds}/>
+          <AddNeed updateNeeds={updateNeeds}/>
         </Route>
 
         <Route exact path="/partner-signup">
-          <Signup onSignup={handleSignup}/>
+          <Signup />
         </Route>
 
         <Route exact path="/add-category">
@@ -110,7 +84,7 @@ function App() {
 
         <Route exact path="/">
             <h1>Welcome to Neighborshare</h1>
-            <NeedsList needs={needs} user={user} onDelete={onDelete} auth={isLoggedIn} mine={false}/>
+            <NeedsList needs={needs} onDelete={onDelete} mine={false}/>
         </Route>
 
       </Switch>
