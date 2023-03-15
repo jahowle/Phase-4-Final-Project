@@ -1,24 +1,48 @@
-# README
+# Phase 4 Final Project
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# About
 
-Things you may want to cover:
+This is the repository for my Phase 4 Final Project for Flatiron School.
 
-* Ruby version
+This repository if for an app called NeighborShare.
 
-* System dependencies
+NeighborShare allows a user to donate money to Neighbors in their area for a variety of needs.
 
-* Configuration
+# Installation
 
-* Database creation
+- Fork and Clone this repository
+- Open the project folder and run
 
-* Database initialization
+```
+bundle install
+```
 
-* How to run the test suite
+- Then launch the Rails server by running
 
-* Services (job queues, cache servers, search engines, etc.)
+```
+rails s
+```
 
-* Deployment instructions
+- Then migrate and seed the database by running
 
-* ...
+```
+rails db:migrate db:seed
+```
+
+- Then, in a new terminal, launch the front-end react client by running
+
+```
+npm start --prefix client
+```
+
+# Architecture
+
+The database contains tables for Categories, Donations, Donors, Locations, Needs, Neighbors, Partners, and Users along with routes for each.
+
+# Use
+
+When using the app, a user can signup to be a partner that is affiliated with a partner organization. This gives them the ability to create Needs, Categories, Neighbors, Locations, and other Partner Organizations. It also allows the user to fund needs and delete needs that they themselves have created on behalf of a Neighbor.
+
+# Contributing
+
+This project was for a coding course and as such will not be maintained or updated in the future.
