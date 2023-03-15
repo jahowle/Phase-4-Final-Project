@@ -8,6 +8,7 @@ function Login() {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [errors, setErrors] = useState([])
 
     const { handleLogin } = useContext(UserContext);
 

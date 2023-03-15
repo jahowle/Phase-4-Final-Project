@@ -4,7 +4,7 @@
 
 .need-card {
   background-color: aqua;
-  height: 250px;
+  height: auto;
   width: 250px;
   margin: 16px;
   padding: 16px;
