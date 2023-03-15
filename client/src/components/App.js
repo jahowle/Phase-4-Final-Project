@@ -17,7 +17,6 @@ function App() {
   const [user, setUser] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [needs, setNeeds] = useState([])
-  const [signUp, setSignUp] = useState(null)
   
 
   useEffect(() => {
@@ -65,15 +64,11 @@ function App() {
     setIsLoggedIn(!isLoggedIn)
   }
 
-  function signUpSelect(role) {
-    setSignUp(role)
-  }
-
 
   return (
     <div className="App">
 
-      <NavBar isLoggedIn={isLoggedIn} onLogout={onLogout} signUpSelect={signUpSelect} user={user}/>
+      <NavBar isLoggedIn={isLoggedIn} onLogout={onLogout}  user={user}/>
 
       <Switch>
       <Route exact path="/login">

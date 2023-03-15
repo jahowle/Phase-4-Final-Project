@@ -5,8 +5,6 @@ function NeedsList({needs, auth, onDelete, user, mine}) {
 
     const filteredNeeds = needs.filter((need) => need.funded === false)
 
-    console.log(filteredNeeds)
-
     const needsToDisplay = filteredNeeds.map((need) => {
         return <NeedCard 
         key={need.id} 

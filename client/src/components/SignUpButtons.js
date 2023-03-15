@@ -1,15 +1,12 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-function SignUpButtons({signUpSelect}) {
+function SignUpButtons() {
 
-    function handlePartnerSignUp(){
-        signUpSelect("Partner")
-    }
 
     return(
         <div>
-            <button className="nav-button" onClick={handlePartnerSignUp}>
+            <button className="nav-button" >
             <NavLink to="/partner-signup" exact>
                 Partner SignUp
             </NavLink>
