@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
 import LocationSelect from "./LocationSelect";
 
-function AddPartner() {
+function AddPartner({locations}) {
 
     const [partner, setPartner] = useState("")
     const [location, setLocation] = useState(null)
@@ -53,7 +53,7 @@ function AddPartner() {
                     />
                 </label>
 
-                <LocationSelect handleLocationChange={handleLocationChange} />
+                <LocationSelect handleLocationChange={handleLocationChange} locations={locations}/>
 
                
                 <button id="submit-button" type="submit">Submit Partner Organization</button>

@@ -1,15 +1,7 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import NeighborOption from "./NeighborOption";
 
-function NeighborSelect({handleNeighborChange}) {
-
-    const [neighbors, setNeighbors] = useState([])
-
-    useEffect(() => {
-        fetch("/neighbors")
-          .then((r) => r.json())
-          .then((data) => setNeighbors(data));
-      }, []);
+function NeighborSelect({handleNeighborChange, neighbors}) {
 
     const neighborOptions = neighbors.map((neighbor) => {
         return <NeighborOption key={neighbor.id} neighborId={neighbor.id} neighborName={neighbor.name}/>

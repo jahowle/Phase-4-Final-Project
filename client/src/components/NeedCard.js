@@ -63,7 +63,7 @@ function NeedCard({id, description, neighbor, remainingBalance, category, auth, 
     return(
         <div className="need-card">
             <h3>{neighbor}</h3>
-            <h4>{balance}</h4>
+            <h4>$ {balance}</h4>
             <h4>{category}</h4>
             <p>{description}</p>
             {mine ? <button onClick={handleDelete}>Delete</button> : ""}

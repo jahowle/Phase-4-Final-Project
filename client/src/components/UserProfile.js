@@ -9,6 +9,7 @@ function UserProfile({needs, onDelete}) {
 
 
     const needsToDisplay = needs.filter((need) => need.user_id === user.id)
+    
 
     return(
         <div>

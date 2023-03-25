@@ -14,11 +14,19 @@ import AddNeighbor from './AddNeighbor';
 
 function App() {
   const [needs, setNeeds] = useState([])
+  const [categories, setCategories] = useState([])
+  const [partners, setPartners] = useState([])
+  const [locations, setLocations] = useState([])
+  const [neighbors, setNeighbors] = useState([])
   
 
   useEffect(() => {
  
     getNeeds()
+    getCategories()
+    getPartners()
+    getLocations()
+    getNeighbors()
   }, []);
 
   function onDelete(id) {
@@ -30,6 +38,30 @@ function App() {
     await fetch("/needs")
     .then((r) => r.json())
     .then((data) => setNeeds(data))
+  }
+
+  async function getCategories() {
+    await fetch("/categories")
+    .then((r) => r.json())
+    .then((data) => setCategories(data))
+  }
+
+  async function getPartners() {
+    await fetch("/partners")
+    .then((r) => r.json())
+    .then((data) => setPartners(data))
+  }
+
+  async function getLocations() {
+    await fetch("/locations")
+    .then((r) => r.json())
+    .then((data) => setLocations(data))
+  }
+
+  async function getNeighbors() {
+    await fetch("/neighbors")
+    .then((r) => r.json())
+    .then((data) => setNeighbors(data))
   }
 
   function updateNeeds(need) {
@@ -54,7 +86,7 @@ function App() {
         </Route>
 
         <Route exact path="/add-need">
-          <AddNeed updateNeeds={updateNeeds}/>
+          <AddNeed updateNeeds={updateNeeds} categories={categories} neighbors={neighbors}/>
         </Route>
 
         <Route exact path="/partner-signup">
@@ -70,11 +102,11 @@ function App() {
         </Route>
 
         <Route exact path="/add-partner">
-          <AddPartner />
+          <AddPartner locations={locations} />
         </Route>
 
         <Route exact path="/add-neighbor">
-          <AddNeighbor />
+          <AddNeighbor partners={partners}/>
         </Route>
         
 

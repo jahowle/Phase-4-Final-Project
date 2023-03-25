@@ -1,15 +1,7 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import PartnerOption from "./PartnerOption";
 
-function PartnerSelect({handlePartnerChange, formData}) {
-
-    const [partners, setPartners] = useState([])
-
-    useEffect(() => {
-        fetch("/partners")
-          .then((r) => r.json())
-          .then((data) => setPartners(data));
-      }, []);
+function PartnerSelect({handlePartnerChange, partners}) {
 
     const partnerOptions = partners.map((partner) => {
         return <PartnerOption key={partner.id} partnerId={partner.id} partnerName={partner.name}/>

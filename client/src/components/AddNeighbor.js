@@ -1,9 +1,8 @@
 import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
-import LocationSelect from "./LocationSelect";
 import PartnerSelect from "./PartnerSelect";
 
-function AddNeighbor() {
+function AddNeighbor({partners}) {
 
     const [neighbor, setNeighbor] = useState("")
     const [partner, setPartner] = useState(null)
@@ -44,7 +43,7 @@ function AddNeighbor() {
 
     return(
         <div>
-            <h1>Add A neighbor Organization</h1>
+            <h1>Add A Neighbor</h1>
 
 
             <form id="add-neighbor-form" onSubmit={handleSubmit}>
@@ -66,7 +65,7 @@ function AddNeighbor() {
                     />
                 </label>
 
-                <PartnerSelect handlePartnerChange={handlePartnerChange} />
+                <PartnerSelect handlePartnerChange={handlePartnerChange} partners={partners}/>
 
                
                 <button id="submit-button" type="submit">Submit Neighbor</button>

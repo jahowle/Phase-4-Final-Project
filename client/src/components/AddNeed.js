@@ -4,7 +4,7 @@ import NeighborSelect from "./NeighborSelect";
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../context/user";
 
-function AddNeed({updateNeeds}) {
+function AddNeed({updateNeeds, categories, neighbors}) {
 
     const [description, setDescription] = useState("")
     const [category, setCategory] = useState(0)
@@ -76,9 +76,9 @@ function AddNeed({updateNeeds}) {
                     />
                 </label>
                 <label>Category</label>
-                <CategorySelect handleCategoryChange={handleCategoryChange}/>
+                <CategorySelect handleCategoryChange={handleCategoryChange} categories={categories}/>
                 <label>Neighbor</label>
-                <NeighborSelect handleNeighborChange={handleNeighborChange}/>
+                <NeighborSelect handleNeighborChange={handleNeighborChange} neighbors={neighbors}/>
 
                 <label className="input">Amount
                     <input

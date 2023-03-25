@@ -1,15 +1,8 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import LocationOption from "./LocationOption";
 
-function LocationSelect({handleLocationChange, formData}) {
+function LocationSelect({handleLocationChange, locations}) {
 
-    const [locations, setLocations] = useState([])
-
-    useEffect(() => {
-        fetch("/locations")
-          .then((r) => r.json())
-          .then((data) => setLocations(data));
-      }, []);
 
     const locationOptions = locations.map((location) => {
         return <LocationOption key={location.id} locationId={location.id} locationName={location.name}/>
