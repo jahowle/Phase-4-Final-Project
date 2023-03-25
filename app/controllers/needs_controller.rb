@@ -1,6 +1,6 @@
 class NeedsController < ApplicationController
 
-    skip_before_action :authorize, only: [:index, :create]
+    skip_before_action :authorize, only: [:index, :create, :show, :update, :destroy]
 
     def index
         needs = Need.all
@@ -19,6 +19,17 @@ class NeedsController < ApplicationController
     def create
         need = Need.create!(need_params)
         render json: need, include: [:neighbor, :category], status: :created
+        rescue ActiveRecord::RecordInvalid => e
+        render json: { errors: e.record.errors.full_messages }, status: :unprocessable_entity
+    end
+
+    def update
+        need = Need.find_by(id: params[:id])
+        need.update!(remaining_balance: params[:remaining_balance])
+        if need.remaining_balance == 0
+            need.update(funded: true)
+        end
+        render json: need, status: :accepted
         rescue ActiveRecord::RecordInvalid => e
         render json: { errors: e.record.errors.full_messages }, status: :unprocessable_entity
     end

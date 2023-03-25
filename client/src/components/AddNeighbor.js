@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
 import PartnerSelect from "./PartnerSelect";
 
-function AddNeighbor({partners}) {
+function AddNeighbor({partners, updateNeighbors}) {
 
     const [neighbor, setNeighbor] = useState("")
     const [partner, setPartner] = useState(null)
@@ -28,6 +28,7 @@ function AddNeighbor({partners}) {
         .then((r) => {
             if (r.ok) {
                 r.json().then((data) => {
+                    updateNeighbors(data)
                     history.push("/")
                 })
             } else {

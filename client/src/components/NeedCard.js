@@ -7,7 +7,7 @@ function NeedCard({id, description, neighbor, remainingBalance, category, auth, 
     const [errors, setErrors] = useState([])
 
     function handleDelete() {
-        fetch(`needs/${id}`, {
+        fetch(`/needs/${id}`, {
             method: "DELETE",
         })
         .then((r) => {
@@ -20,25 +20,27 @@ function NeedCard({id, description, neighbor, remainingBalance, category, auth, 
     function handleSubmit(e) {
         e.preventDefault()
 
-        fetch("/donations", {
-            method: "POST",
+        const newBalance = balance - amount
+
+
+        fetch(`/needs/${id}`, {
+            method: "PATCH",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                amount: amount,
-                user_id: userId,
-                need_id: id
+                remaining_balance: newBalance
                
             }),
         })
         .then((r) => {
           if (r.ok) {
             r.json().then((data) => {
-                if(data[0].need.funded === false) {
+                console.log(data)
+                if(data.funded === false) {
                     updateBalance(data)
                 } else {
-                    onDelete(data[0].need_id)
+                    onDelete(data.id)
                 }
             })
           } else {
@@ -49,9 +51,7 @@ function NeedCard({id, description, neighbor, remainingBalance, category, auth, 
 
     function updateBalance(amount) {
 
-        const donationAmount = amount[0].amount
-
-        setBalance(balance - donationAmount)
+        setBalance(amount.remaining_balance)
 
     }
 

@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
 import LocationSelect from "./LocationSelect";
 
-function AddPartner({locations}) {
+function AddPartner({locations, updatePartners}) {
 
     const [partner, setPartner] = useState("")
     const [location, setLocation] = useState(null)
@@ -26,6 +26,7 @@ function AddPartner({locations}) {
         .then((r) => {
             if (r.ok) {
                 r.json().then((data) => {
+                    updatePartners(data)
                     history.push("/")
                 })
             } else {

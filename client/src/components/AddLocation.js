@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
 
-function AddLocation() {
+function AddLocation({updateLocations}) {
 
     const [location, setLocation] = useState("")
     const [errors, setErrors] = useState([])
@@ -23,6 +23,7 @@ function AddLocation() {
         .then((r) => {
             if (r.ok) {
                 r.json().then((data) => {
+                    updateLocations(data)
                     history.push("/")
                 })
             } else {

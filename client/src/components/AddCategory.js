@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
 
-function AddCategory() {
+function AddCategory({updateCategories}) {
 
     const [category, setCategory] = useState("")
     const [errors, setErrors] = useState([])
@@ -23,6 +23,7 @@ function AddCategory() {
         .then((r) => {
             if (r.ok) {
                 r.json().then((data) => {
+                    updateCategories(data)
                     history.push("/");
                 })
             } else {

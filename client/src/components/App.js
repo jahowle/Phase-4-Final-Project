@@ -68,6 +68,22 @@ function App() {
     console.log(need)
     setNeeds([...needs, need])
   }
+
+  function updateCategories(category) {
+    setCategories([...categories, category])
+  }
+
+  function updatePartners(partner) {
+    setPartners([...partners, partner])
+  }
+
+  function updateLocations(location) {
+    setLocations([...locations, location])
+  }
+
+  function updateNeighbors(neighbor) {
+    setNeighbors([...neighbors, neighbor])
+  }
   
 
 
@@ -94,19 +110,19 @@ function App() {
         </Route>
 
         <Route exact path="/add-category">
-          <AddCategory />
+          <AddCategory updateCategories={updateCategories} />
         </Route>
 
         <Route exact path="/add-location">
-          <AddLocation />
+          <AddLocation updateLocations={updateLocations} />
         </Route>
 
         <Route exact path="/add-partner">
-          <AddPartner locations={locations} />
+          <AddPartner locations={locations} updatePartners={updatePartners} />
         </Route>
 
         <Route exact path="/add-neighbor">
-          <AddNeighbor partners={partners}/>
+          <AddNeighbor partners={partners} updateNeighbors={updateNeighbors}/>
         </Route>
         
 

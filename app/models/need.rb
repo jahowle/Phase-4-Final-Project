@@ -8,4 +8,13 @@ class Need < ApplicationRecord
     validates :description, :amount, :neighbor_id, :category_id, presence: true
     validates :amount, numericality: {only_integer: true, less_than_or_equal_to: 400}
 
+    validate :no_negative_balance
+
+    def no_negative_balance
+        if self.remaining_balance < 0
+            errors.add(:amount, "too large")
+        end
+       
+    end
+
 end
