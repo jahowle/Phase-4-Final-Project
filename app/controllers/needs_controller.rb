@@ -1,6 +1,7 @@
 class NeedsController < ApplicationController
 
-    skip_before_action :authorize, only: [:index, :create, :show, :update, :destroy]
+    skip_before_action :authorize, only: [:index, :create, :destroy]
+    before_action :require_permission, only: [:destroy]
 
     def index
         needs = Need.all
@@ -48,4 +49,11 @@ class NeedsController < ApplicationController
     def need_params
         params.permit(:description, :amount, :category_id, :neighbor_id, :user_id, :remaining_balance, :funded )
     end
+
+    def require_permission
+        if Need.find(params[:id]).user != current_user
+        render json: {error: "You don't have permission to do that"}
+        end
+    end 
+    
 end
