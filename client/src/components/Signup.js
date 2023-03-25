@@ -3,7 +3,7 @@ import { NavLink, useHistory } from "react-router-dom";
 import PartnerSelect from "./PartnerSelect";
 import { UserContext } from "../context/user";
 
-function Signup() {
+function Signup({partners}) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [partner, setPartner] = useState(0);
@@ -57,7 +57,7 @@ function Signup() {
             onChange={(e) => setUsername(e.target.value)}
           />
           <label for="partner">Partner</label>
-          <PartnerSelect handlePartnerChange={handlePartnerChange}/>
+          <PartnerSelect handlePartnerChange={handlePartnerChange} partners={partners}/>
           <label for="password">Password</label>
            <input
               name="password"

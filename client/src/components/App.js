@@ -106,7 +106,7 @@ function App() {
         </Route>
 
         <Route exact path="/partner-signup">
-          <Signup />
+          <Signup partners={partners}/>
         </Route>
 
         <Route exact path="/add-category">
