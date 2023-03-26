@@ -43,6 +43,14 @@ class NeedsController < ApplicationController
 
     end
 
+    def edit_need
+        need = Need.find_by(id: params[:id])
+        need.update!(description: params[:description])
+        render json: need, status: :accepted
+        rescue ActiveRecord::RecordInvalid => e
+        render json: { errors: e.record.errors.full_messages }, status: :unprocessable_entity
+    end
+
 
     private
 

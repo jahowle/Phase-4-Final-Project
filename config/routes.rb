@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   resources :donors, only: [:create, :index, :show]
   resources :needs, only: [:create, :index, :show, :destroy, :update]
 
+  patch "/edit-need/:id", to: "needs#edit_need"
+
   get "/sessions", to: "sessions#index"
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"

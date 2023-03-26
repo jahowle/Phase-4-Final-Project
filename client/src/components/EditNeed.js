@@ -1,21 +1,56 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import { useParams, useHistory } from "react-router-dom";
 
-function EditNeed({needs}) {
 
+function EditNeed({updateNeedDescription}) {
+
+    const [errors, setErrors] = useState([])
+    const [description, setDescription] = useState("")
     const params = useParams()
+    const history = useHistory()
 
-    console.log(params.id)
+    useEffect(() => {
+        fetch(`/needs/${params.id}`)
+        .then((r) => r.json())
+        .then((data) => {
+            setDescription(data.description)
+        })
+    }, [])
+    
 
-    const need = needs.filter((need) => need.id === parseInt(params.id))
+    function handleSubmit(e) {
+        e.preventDefault()
 
-    console.log(need[0])
+    fetch(`/edit-need/${params.id}`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            description: description
+        }),
+    })
+    .then((r) => {
+        if (r.ok) {
+            r.json().then((data) => {
+                updateNeedDescription(data)
+                history.push("/profile")
+            })
+        } else {
+            r.json().then((errorData) => setErrors(errorData.errors))
+        }
+    })
+}
 
     
         return(
             <div>
                 <h1>Edit Need</h1>
-                <h2>{need[0].description}</h2>
+                <form onSubmit={handleSubmit}>
+                    <label>Description</label>
+                    <input type="text" name="description" value={description} onChange={(e) => setDescription(e.target.value)}/>
+                    <button id="submit-button" type="submit" >Save</button>
+                </form>
             </div>
         )
 }

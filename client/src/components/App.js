@@ -86,6 +86,18 @@ function App() {
     setNeighbors([...neighbors, neighbor])
   }
   
+  function updateNeedDescription(need) {
+    const updatedNeeds = needs.map((n) => {
+      if (n.id === need.id) {
+        return {...n, description: need.description}
+      } else {
+        return n
+      }
+    })
+
+    setNeeds(updatedNeeds)
+    
+  }
 
 
   return (
@@ -127,7 +139,7 @@ function App() {
         </Route>
 
         <Route exact path="/edit-need/:id">
-          <EditNeed needs={needs}/>
+          <EditNeed updateNeedDescription={updateNeedDescription} />
         </Route>
         
 
