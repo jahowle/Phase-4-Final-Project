@@ -1,10 +1,13 @@
 import React, {useState} from "react";
+import { NavLink, useParams } from "react-router-dom";
 
 function NeedCard({id, description, neighbor, remainingBalance, category, auth, onDelete, mine}) {
 
     const [amount, setAmount] = useState(null)
     const [balance, setBalance] = useState(remainingBalance)
     const [errors, setErrors] = useState([])
+
+    const params = useParams()
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -76,7 +79,7 @@ function NeedCard({id, description, neighbor, remainingBalance, category, auth, 
              
              <button id="submit-button" type="submit">Submit</button></form> : "" }
              {mine ? <button onClick={handleDelete}>Delete</button> : ""}
-             {mine ? <button>Edit</button> : ""}
+             {mine ?<NavLink to={`/edit-need/${id}`} exact><button>Edit</button></NavLink>  : ""}
         </div>
     )
 }

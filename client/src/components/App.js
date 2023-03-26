@@ -11,6 +11,7 @@ import AddCategory from './AddCategory';
 import AddLocation from './AddLocation'
 import AddPartner from './AddPartner';
 import AddNeighbor from './AddNeighbor';
+import EditNeed from './EditNeed';
 
 function App() {
   const [needs, setNeeds] = useState([])
@@ -123,6 +124,10 @@ function App() {
 
         <Route exact path="/add-neighbor">
           <AddNeighbor partners={partners} updateNeighbors={updateNeighbors}/>
+        </Route>
+
+        <Route exact path="/edit-need/:id">
+          <EditNeed needs={needs}/>
         </Route>
         
 
